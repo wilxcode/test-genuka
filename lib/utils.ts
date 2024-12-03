@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export const formatTime = (time: string) => {
   const [hours, minutes] = time.split(':')
 
-  console.log(hours, minutes)
+  // console.log(hours, minutes)
 
   if (Number(hours) > 12) {
     return `${Number(hours) - 12}:${minutes} PM`
