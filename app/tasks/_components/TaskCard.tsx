@@ -40,14 +40,14 @@ const TaskCard = (props: TaskCardProps) => {
       <CardHeader className="pb-4 flex-row justify-between items-center">
         <div>
           <CardTitle>{task.title}</CardTitle>
-          <CardDescription>{task.project}</CardDescription>
+          <CardDescription className='text-[#a6a6a6]'>{task.project}</CardDescription>
         </div>
         <Checkbox className="rounded-full border-muted-foreground/50" />
       </CardHeader>
       <Separator className="w-[88%] mx-auto" />
       <CardContent className="flex justify-between items-center pt-4 text-sm text-muted-foreground">
-        <p>
-          Today: {formatTime(task.startTime)} - {formatTime(task.endTime)}
+        <p className='text-[#d4d4d4]'>
+          <span className='text-[#a6a6a6]'>Today</span> {formatTime(task.startTime)} - {formatTime(task.endTime)}
         </p>
         <Avatars taskId={task.id} />
       </CardContent>
