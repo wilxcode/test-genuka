@@ -13,18 +13,20 @@ type TaskCheckboxProps = {
 const TaskCheckbox = (props: TaskCheckboxProps) => {
   const [checked, setChecked] = useState(props.isCompleted)
   // console.log(checked)
-  const [result, setResult] = useState<{
+  const [, setResult] = useState<{
     success?: string
     error?: string
   } | null>(null)
-  console.log(result)
+  // console.log(result)
 
   const handleCheckboxChange = async () => {
-    setChecked(!checked)
-
     const response = await completeTask(props.taskId, !checked)
 
     setResult(response)
+    
+    if (response.success) {
+      setChecked(!checked)
+    }
   }
 
   return (
