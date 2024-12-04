@@ -23,7 +23,7 @@ const TaskCheckbox = (props: TaskCheckboxProps) => {
     const response = await completeTask(props.taskId, !checked)
 
     setResult(response)
-    
+
     if (response.success) {
       setChecked(!checked)
     }
@@ -31,7 +31,7 @@ const TaskCheckbox = (props: TaskCheckboxProps) => {
 
   return (
     <Checkbox
-      className="rounded-full border-muted-foreground/50"
+      className="rounded-full border-muted-foreground/50 size-6"
       checked={checked}
       onClick={handleCheckboxChange}
     />

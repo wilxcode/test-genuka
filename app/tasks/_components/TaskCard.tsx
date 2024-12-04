@@ -31,7 +31,7 @@ type TaskCardProps = {
 const TaskCard = (props: TaskCardProps) => {
   return (
     <Card className="w-full md:max-w-sm">
-      <CardHeader className="pb-4 flex-row justify-between items-center">
+      <CardHeader className="pb-4 flex-row justify-between items-start">
         <div>
           <CardTitle
             className={cn(props.task.isCompleted ? 'line-through' : '')}
