@@ -23,13 +23,13 @@ const NavLinks = () => {
   const path = usePathname()
 
   return (
-    <ul className="list-none flex items-center justify-between px-4 border-b h-full *:h-full *:-mb-[2px]">
+    <ul className="list-none flex items-center justify-between px-4 border-b h-full *:h-full">
       {links.map((link, index) => (
         <li key={index}>
           <Link
             href={link.url}
             className={cn(
-              'h-full flex items-center',
+              'h-full flex items-center focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
               path === link.url ? 'border-b border-black font-bold' : '',
             )}
           >
