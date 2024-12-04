@@ -7,10 +7,10 @@ import {
 } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import Avatars from '@/components/ui/avatars'
-import { Checkbox } from '@/components/ui/checkbox'
 import { Task } from '@prisma/client'
+import TaskCheckbox from './TaskCheckbox'
 import { findParticipantsOnTask } from '@/lib/data'
-import { formatTime } from '@/lib/utils'
+import { cn, formatTime } from '@/lib/utils'
 
 type ParticipantAvatarsProps = {
   taskId: string
@@ -32,12 +32,19 @@ const TaskCard = (props: TaskCardProps) => {
     <Card className="w-full md:max-w-sm">
       <CardHeader className="pb-4 flex-row justify-between items-center">
         <div>
-          <CardTitle>{props.task.title}</CardTitle>
+          <CardTitle
+            className={cn(props.task.isCompleted ? 'line-through' : '')}
+          >
+            {props.task.title}
+          </CardTitle>
           <CardDescription className="text-[#a6a6a6]">
             {props.task.project}
           </CardDescription>
         </div>
-        <Checkbox className="rounded-full border-muted-foreground/50" />
+        <TaskCheckbox
+          isCompleted={props.task.isCompleted}
+          taskId={props.task.id}
+        />
       </CardHeader>
       <Separator className="w-[88%] mx-auto" />
       <CardContent className="flex justify-between items-center pt-4 text-sm text-muted-foreground">

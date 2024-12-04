@@ -20,7 +20,8 @@ async function main() {
       project: 'Project Alpha',
       startTime: '09:00:00',
       endTime: '10:00:00',
-      status: 'In Progress',
+      status: 'Open',
+      isCompleted: false,
       participants: {
         create: [
           { participant: { connect: { email: 'alice@example.com' } } },
@@ -37,7 +38,8 @@ async function main() {
       project: 'Project Beta',
       startTime: '10:00:00',
       endTime: '11:00:00',
-      status: 'Not started',
+      status: 'Open',
+      isCompleted: false,
       participants: {
         create: [
           { participant: { connect: { email: 'alice@example.com' } } },
@@ -53,7 +55,8 @@ async function main() {
       project: 'Project Gamma',
       startTime: '11:00:00',
       endTime: '12:00:00',
-      status: 'Completed',
+      status: 'Archived',
+      isCompleted: false,
       participants: {
         create: [
           { participant: { connect: { email: 'charlie@example.com' } } },
@@ -69,7 +72,8 @@ async function main() {
       project: 'Project Delta',
       startTime: '12:00:00',
       endTime: '13:00:00',
-      status: 'Not started',
+      status: 'Closed',
+      isCompleted: false,
       participants: {
         create: [
           { participant: { connect: { email: 'alice@example.com' } } },
@@ -82,7 +86,26 @@ async function main() {
     },
   })
 
-  console.log('Tasks created:', task1, task2, task3, task4)
+  const task5 = await prisma.task.create({
+    data: {
+      title: 'Task 5',
+      project: 'Project Super Delta',
+      startTime: '14:00:00',
+      endTime: '17:00:00',
+      status: 'Archived',
+      isCompleted: false,
+      participants: {
+        create: [
+          { participant: { connect: { email: 'alice@example.com' } } },
+          { participant: { connect: { email: 'charlie@example.com' } } },
+          { participant: { connect: { email: 'diana@example.com' } } },
+          { participant: { connect: { email: 'eve@example.com' } } },
+        ],
+      },
+    },
+  })
+
+  console.log('Tasks created:', task1, task2, task3, task4, task5)
 }
 
 main()

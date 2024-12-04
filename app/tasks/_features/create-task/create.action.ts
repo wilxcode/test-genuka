@@ -26,11 +26,9 @@ const createTask = async (currentState: any, formData: FormData) => {
   const task = validatedData.data
 
   try {
-    const newTask = await prisma.task.create({
+    await prisma.task.create({
       data: task,
     })
-
-    console.log('create task success:', newTask)
 
     revalidatePath('/tasks')
 
@@ -38,7 +36,6 @@ const createTask = async (currentState: any, formData: FormData) => {
       success: 'create task success',
     }
   } catch {
-    // throw new Error('create task failed')
     return {
       error: 'create task failed',
     }

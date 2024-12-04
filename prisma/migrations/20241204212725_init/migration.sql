@@ -5,7 +5,8 @@ CREATE TABLE "Task" (
     "project" TEXT NOT NULL,
     "startTime" TEXT NOT NULL,
     "endTime" TEXT NOT NULL,
-    "status" TEXT NOT NULL DEFAULT 'Not started',
+    "status" TEXT NOT NULL DEFAULT 'Open',
+    "isCompleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL
 );

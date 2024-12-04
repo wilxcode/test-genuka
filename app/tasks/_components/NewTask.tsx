@@ -26,8 +26,7 @@ const TaskForm = () => {
     createTask,
     initialState,
   )
-
-  console.log(state)
+  // console.log(state)
 
   return (
     <form action={formAction} className="flex flex-col gap-6 items-start">
