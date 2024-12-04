@@ -16,7 +16,7 @@ const TaskForm = () => {
     <form action={''} className="flex flex-col gap-6 items-start">
       <div className="flex flex-col gap-2 w-full">
         <Label htmlFor="title">Title</Label>
-        <Input type="text" placeholder="Task's title" id="title" name="title" />
+        <Input type="text" placeholder="Task's title" id="title" name="title" autoFocus/>
       </div>
       <div className="flex flex-col gap-2 w-full">
         <Label htmlFor="projectName">Project</Label>
@@ -29,11 +29,11 @@ const TaskForm = () => {
       </div>
       <div className="flex flex-col gap-2 w-full">
         <Label htmlFor="startTime">Start time</Label>
-        <Input type="time" placeholder="end time" name="endTime" />
+        <Input type="time" placeholder="end time" name="startTime" id='startTime'/>
       </div>
       <div className="flex flex-col gap-2 w-full">
         <Label htmlFor="endTime">End time</Label>
-        <Input type="time" placeholder="start time" name="startTime" />
+        <Input type="time" placeholder="start time" name="endTime" id='endTime' />
       </div>
       <Button>Create</Button>
     </form>
