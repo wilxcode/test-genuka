@@ -93,10 +93,13 @@ const TaskForm = () => {
         {state.success ? state.success : null}
         {state.error ? state.error : null}
       </p>
-      <p className="text-sm text-green-600">
-        {state.success ? state.success : null}
-        {state.error ? state.error : null}
-      </p>
+      {state.success ? (
+        <p className="text-sm text-green-600">{state.success}</p>
+      ) : null}
+      {state.error ? (
+        <p className="text-sm text-destructive">{state.error}</p>
+      ) : null}
+      
       <Button disabled={isPending} type="submit">
         Create
       </Button>
