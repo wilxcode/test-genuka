@@ -1,8 +1,9 @@
 import TaskCard from './_components/TaskCard'
 import NewTask from './_components/NewTask'
+import Categories from './_components/Categories'
+
 import prisma from '@/lib/prisma'
 import { Task } from '@prisma/client'
-import Categories from './_components/Categories'
 
 type TasksListProps = {
   tasks: Task[]

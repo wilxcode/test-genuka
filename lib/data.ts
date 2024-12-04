@@ -2,7 +2,7 @@
 
 import prisma from '@/lib/prisma'
 
-const findTasks = async () => {
+const getTasks = async () => {
   const tasks = await prisma.task.findMany({
     select: {
       id: true,
@@ -16,7 +16,7 @@ const findTasks = async () => {
   return tasks
 }
 
-const findParticipants = async () => {
+const getParticipants = async () => {
   const participants = await prisma.participant.findMany({
     select: {
       email: true,
@@ -26,7 +26,7 @@ const findParticipants = async () => {
   return participants
 }
 
-const findParticipantsOnTask = async (taskId: string) => {
+const getParticipantsOnTask = async (taskId: string) => {
   try {
     const participants = await prisma.participantOnTask.findMany({
       where: { taskId },
@@ -40,4 +40,4 @@ const findParticipantsOnTask = async (taskId: string) => {
   }
 }
 
-export { findParticipants, findTasks, findParticipantsOnTask }
+export { getParticipants, getTasks, getParticipantsOnTask }

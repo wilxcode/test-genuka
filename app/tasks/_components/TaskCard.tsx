@@ -7,9 +7,10 @@ import {
 } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import Avatars from '@/components/ui/avatars'
-import { Task } from '@prisma/client'
 import TaskCheckbox from './TaskCheckbox'
-import { findParticipantsOnTask } from '@/lib/data'
+
+import { Task } from '@prisma/client'
+import { getParticipantsOnTask } from '@/lib/data'
 import { cn, formatTime } from '@/lib/utils'
 
 type ParticipantAvatarsProps = {
@@ -17,7 +18,7 @@ type ParticipantAvatarsProps = {
 }
 
 const ParticipantAvatars = async (props: ParticipantAvatarsProps) => {
-  const participants = await findParticipantsOnTask(props.taskId)
+  const participants = await getParticipantsOnTask(props.taskId)
   // console.log(participants)
 
   return <Avatars numPeople={participants.length} participants={participants} />
