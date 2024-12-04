@@ -9,16 +9,17 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { DialogDescription } from '@radix-ui/react-dialog'
+import { Label } from '@/components/ui/label'
 
 const TaskForm = () => {
   return (
     <form action={''} className="flex flex-col gap-6 items-start">
       <div className="flex flex-col gap-2 w-full">
-        <label htmlFor="title">Title</label>
+        <Label htmlFor="title">Title</Label>
         <Input type="text" placeholder="Task's title" id="title" name="title" />
       </div>
       <div className="flex flex-col gap-2 w-full">
-        <label htmlFor="projectName">Project</label>
+        <Label htmlFor="projectName">Project</Label>
         <Input
           type="text"
           placeholder="Project name"
@@ -27,11 +28,11 @@ const TaskForm = () => {
         />
       </div>
       <div className="flex flex-col gap-2 w-full">
-        <label htmlFor="startTime">Start time</label>
+        <Label htmlFor="startTime">Start time</Label>
         <Input type="time" placeholder="end time" name="endTime" />
       </div>
       <div className="flex flex-col gap-2 w-full">
-        <label htmlFor="endTime">End time</label>
+        <Label htmlFor="endTime">End time</Label>
         <Input type="time" placeholder="start time" name="startTime" />
       </div>
       <Button>Create</Button>

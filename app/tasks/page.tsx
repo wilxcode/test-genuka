@@ -22,14 +22,12 @@ const PageTasks = async () => {
   const tasks = await prisma.task.findMany()
 
   return (
-    <div className="p-4 min-h-screen bg-[#f9f9f9]">
+    <div className="p-4 pt-12 md:pt-4">
       <div className="flex flex-col gap-8">
         <div className="flex justify-between items-start">
           <div className="flex flex-col gap-2">
             <h2 className="font-bold tracking-tight">{`Today's Tasks`}</h2>
-            <span className="text-sm text-[#a6a6a6]">
-              Wednesday, 11 May
-            </span>
+            <span className="text-sm text-[#a6a6a6]">Wednesday, 11 May</span>
           </div>
           <NewTask />
         </div>

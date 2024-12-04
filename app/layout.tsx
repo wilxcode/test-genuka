@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { Outfit } from 'next/font/google'
 import './globals.css'
-import { SidebarProvider } from '@/components/ui/sidebar'
-import AppSidebar from './_components/AppSidebar'
+
+import MenuMobile from '@/components/ui/mobile-menu'
+import Sidebar from '@/components/ui/sidebar'
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -23,12 +24,13 @@ export default function RootLayout(props: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={`${outfit.variable} antialiased`}>
-        <SidebarProvider>
-          <AppSidebar />
-          <main className='w-full'>
+        <div className="grid grid-rows-[4rem_1fr] md:grid-cols-[16rem_1fr] min-h-screen">
+          <Sidebar className="hidden md:flex md:min-h-screen" />
+          <MenuMobile className="md:hidden" />
+          <main className="w-full md:min-h-screen overflow-auto bg-[#f9f9f9]">
             {props.children}
           </main>
-        </SidebarProvider>
+        </div>
       </body>
     </html>
   )

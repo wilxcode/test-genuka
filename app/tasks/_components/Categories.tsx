@@ -24,7 +24,7 @@ const Categories = () => {
               3
             </Badge>
           </Button>
-          <Separator orientation="vertical" />
+          <Separator orientation="vertical" className='h-[50%] my-auto w-[2px]'/>
         </li>
         <li>
           <Button variant={'ghost'} size={'sm'}>

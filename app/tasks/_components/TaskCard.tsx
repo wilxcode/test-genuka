@@ -6,26 +6,21 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
-import AvatarCircles from '@/components/ui/avatar-circles'
+import Avatars from '@/components/ui/avatars'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Task } from '@prisma/client'
 import { findParticipantsOnTask } from '@/lib/data'
 import { formatTime } from '@/lib/utils'
 
-type AvatarsProps = {
+type ParticipantAvatarsProps = {
   taskId: string
 }
 
-const Avatars = async (props: AvatarsProps) => {
+const ParticipantAvatars = async (props: ParticipantAvatarsProps) => {
   const participants = await findParticipantsOnTask(props.taskId)
   // console.log(participants)
 
-  return (
-    <AvatarCircles
-      numPeople={participants.length}
-      participants={participants}
-    />
-  )
+  return <Avatars numPeople={participants.length} participants={participants} />
 }
 
 type TaskCardProps = {
@@ -33,23 +28,24 @@ type TaskCardProps = {
 }
 
 const TaskCard = (props: TaskCardProps) => {
-  const { task } = props
-
   return (
-    <Card className="max-w-sm">
+    <Card className="w-full md:max-w-sm">
       <CardHeader className="pb-4 flex-row justify-between items-center">
         <div>
-          <CardTitle>{task.title}</CardTitle>
-          <CardDescription className='text-[#a6a6a6]'>{task.project}</CardDescription>
+          <CardTitle>{props.task.title}</CardTitle>
+          <CardDescription className="text-[#a6a6a6]">
+            {props.task.project}
+          </CardDescription>
         </div>
         <Checkbox className="rounded-full border-muted-foreground/50" />
       </CardHeader>
       <Separator className="w-[88%] mx-auto" />
       <CardContent className="flex justify-between items-center pt-4 text-sm text-muted-foreground">
-        <p className='text-[#d4d4d4]'>
-          <span className='text-[#a6a6a6]'>Today</span> {formatTime(task.startTime)} - {formatTime(task.endTime)}
+        <p className="text-[#d4d4d4]">
+          <span className="text-[#a6a6a6]">Today</span>{' '}
+          {formatTime(props.task.startTime)} - {formatTime(props.task.endTime)}
         </p>
-        <Avatars taskId={task.id} />
+        <ParticipantAvatars taskId={props.task.id} />
       </CardContent>
     </Card>
   )
