@@ -23,7 +23,7 @@ const NavLinks = () => {
   const path = usePathname()
 
   return (
-    <ul className="list-none flex items-center justify-between px-4 border-b h-full *:h-full">
+    <ul className="list-none flex items-center justify-between px-4 border-b h-full *:h-full *:-mb-[2px]">
       {links.map((link, index) => (
         <li key={index}>
           <Link
