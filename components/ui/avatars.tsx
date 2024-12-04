@@ -13,7 +13,7 @@ type AvatarsProps = {
 const Avatars = (props: AvatarsProps) => {
   if (props.numPeople === 0 || undefined) {
     return (
-      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-400 text-xs border-2 text-white">
+      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-400 text-xs border-2 border-white text-white">
         0
       </div>
     )
@@ -38,7 +38,7 @@ const Avatars = (props: AvatarsProps) => {
             borderSize={2}
           />
         ))}
-        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-400 text-xs border-2 text-white">
+        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-400 text-xs border-2 border-white text-white">
           +{remainingCount}
         </div>
       </div>
