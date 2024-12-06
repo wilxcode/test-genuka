@@ -20,7 +20,16 @@ const TasksList = (props: TasksListProps) => {
 }
 
 const PageTasks = async () => {
-  const tasks = await prisma.task.findMany()
+  const tasks = await prisma.task.findMany({
+    orderBy: [
+      {
+        isCompleted: 'desc',
+      },
+      {
+        createdAt: 'asc',
+      },
+    ],
+  })
 
   return (
     <div className="p-4 pt-12 md:pt-4">
