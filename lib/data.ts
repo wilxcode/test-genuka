@@ -4,13 +4,14 @@ import prisma from '@/lib/prisma'
 
 const getTasks = async () => {
   const tasks = await prisma.task.findMany({
-    select: {
-      id: true,
-      title: true,
-      project: true,
-      startTime: true,
-      endTime: true,
-    },
+    orderBy: [
+      {
+        isCompleted: 'desc',
+      },
+      {
+        createdAt: 'asc',
+      },
+    ],
   })
 
   return tasks

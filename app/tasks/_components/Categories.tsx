@@ -3,63 +3,93 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 
 import { cn } from '@/lib/utils'
+import { Task } from '@prisma/client'
 
-const Categories = () => {
+type ListItemProps = {
+  name: string
+  isActive?: boolean
+  numberOfTasks?: number
+}
+
+const ListItem = (props: ListItemProps) => {
+  return (
+    <li>
+      <Button
+        variant={'ghost'}
+        size={'sm'}
+        className={cn(
+          props.isActive ? 'text-primary' : 'text-muted-foreground',
+        )}
+      >
+        <span>{props.name}</span>
+        <Badge
+          variant={props.isActive ? 'default' : 'outline'}
+          className={cn(
+            'rounded-full',
+            props.isActive ? 'bg-primary' : 'bg-[#d9d9d9] text-white',
+          )}
+        >
+          {props.numberOfTasks ? props.numberOfTasks : 0}
+        </Badge>
+      </Button>
+    </li>
+  )
+}
+
+type CategoriesProps = {
+  tasks: Task[]
+}
+
+const Categories = (props: CategoriesProps) => {
+  const listItems = [
+    {
+      name: 'All',
+      numberOfTasks: props.tasks.length,
+    },
+    {
+      name: 'Open',
+      numberOfTasks: props.tasks.filter((task) => task.status === 'Open')
+        .length,
+    },
+    {
+      name: 'Closed',
+      numberOfTasks: props.tasks.filter((task) => task.status === 'Closed')
+        .length,
+    },
+    {
+      name: 'Archived',
+      numberOfTasks: props.tasks.filter((task) => task.status === 'Archived')
+        .length,
+    },
+  ]
+
   return (
     <div>
       <ul className="list-none flex flex-wrap gap-1 gap-y-4 *:inline-flex *:gap-1 *:items-center *:text-muted-foreground">
-        <li>
-          <Button
-            variant={'ghost'}
-            size={'sm'}
-            className={cn(true ? 'text-primary' : 'text-muted-foreground')}
-          >
-            <span>All</span>
-            <Badge
-              variant={true ? 'default' : 'outline'}
-              className={cn(
-                'rounded-full',
-                true ? 'bg-primary' : 'bg-[#d9d9d9] text-white',
-              )}
-            >
-              3
-            </Badge>
-          </Button>
-          <Separator orientation="vertical" className='h-[50%] my-auto w-[2px]'/>
-        </li>
-        <li>
-          <Button variant={'ghost'} size={'sm'}>
-            <span>Open</span>
-            <Badge
-              variant={'outline'}
-              className="rounded-full bg-[#d9d9d9] text-white"
-            >
-              3
-            </Badge>
-          </Button>
-        </li>
-        <li>
-          <Button variant={'ghost'} size={'sm'}>
-            <span>Closed</span>
-            <Badge
-              variant="outline"
-              className="rounded-full bg-[#d9d9d9] text-white"
-            >
-              3
-            </Badge>
-          </Button>
-        </li>
-        <li>
-          <Button variant={'ghost'} size={'sm'}>
-            <span>Archived</span>
-            <Badge
-              variant="outline"
-              className="rounded-full bg-[#d9d9d9] text-white"
-            >
-              3
-            </Badge>
-          </Button>
-        </li>
+        {listItems.map((li, index) => {
+          if (index === 0)
+            return (
+              <div key={index} className="flex gap-2">
+                <ListItem
+                  name={li.name}
+                  numberOfTasks={li.numberOfTasks}
+                  isActive={true}
+                />
+                <Separator
+                  orientation="vertical"
+                  className="h-[50%] my-auto w-[2px]"
+                />
+              </div>
+            )
+          return (
+            <ListItem
+              key={index}
+              name={li.name}
+              numberOfTasks={li.numberOfTasks}
+              isActive={false}
+            />
+          )
+        })}
       </ul>
     </div>
   )

@@ -20,7 +20,7 @@ const Avatars = (props: AvatarsProps) => {
   }
 
   if (props.numPeople && props.numPeople > 3) {
-    const displayedAvatars = props.participants.slice(0, 3)
+    const displayedAvatars = props.participants?.slice(0, 3)
     const remainingCount = props.numPeople - 3
 
     return (

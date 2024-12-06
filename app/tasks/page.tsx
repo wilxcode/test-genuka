@@ -1,35 +1,11 @@
-import TaskCard from './_components/TaskCard'
 import NewTask from './_components/NewTask'
 import Categories from './_components/Categories'
+import TasksList from './_components/TaskList'
 
-import prisma from '@/lib/prisma'
-import { Task } from '@prisma/client'
-
-type TasksListProps = {
-  tasks: Task[]
-}
-
-const TasksList = (props: TasksListProps) => {
-  return (
-    <div className="flex flex-col gap-4">
-      {props.tasks.map((task) => (
-        <TaskCard key={task.id} task={task} />
-      ))}
-    </div>
-  )
-}
+import { getTasks } from '@/lib/data'
 
 const PageTasks = async () => {
-  const tasks = await prisma.task.findMany({
-    orderBy: [
-      {
-        isCompleted: 'desc',
-      },
-      {
-        createdAt: 'asc',
-      },
-    ],
-  })
+  const tasks = await getTasks()
 
   return (
     <div className="p-4 pt-12 md:pt-4">
@@ -41,8 +17,8 @@ const PageTasks = async () => {
           </div>
           <NewTask />
         </div>
-        <Categories />
-        <TasksList tasks={tasks} />
+        <Categories tasks={tasks} />
+        <TasksList tasks={tasks} filter="all" />
       </div>
     </div>
   )
