@@ -29,7 +29,7 @@ const PageTasks = async (props: PageTasksProps) => {
           <NewTask />
         </div>
         <Categories tasks={tasks} filter={filter} />
-        <TasksList tasks={tasks} filter={filter ? filter : 'all'} />
+        <TasksList filter={filter ? filter : 'all'} />
       </div>
     </div>
   )

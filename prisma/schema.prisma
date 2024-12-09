@@ -13,7 +13,7 @@ model Task {
   project      String
   startTime    String
   endTime      String
-  status       String              @default("Open")
+  status       String              @default("open")
   isCompleted  Boolean             @default(false)
   participants ParticipantOnTask[]
   createdAt    DateTime            @default(now())

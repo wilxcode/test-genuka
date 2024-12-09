@@ -1,30 +1,20 @@
+import { getTasksFiltered } from '@/lib/data'
 import TaskCard from './TaskCard'
 
-import { Task } from '@prisma/client'
+type Filter = 'all' | 'open' | 'closed' | 'archived'
 
 type TasksListProps = {
-  tasks: Task[]
-  filter?: 'all' | 'open' | 'closed' | 'archived'
+  filter: Filter
 }
 
-const TasksList = (props: TasksListProps) => {
-  if (props.filter === 'all') {
-    return (
-      <div className="flex flex-col gap-4">
-        {props.tasks.map((task) => (
-          <TaskCard key={task.id} task={task} />
-        ))}
-      </div>
-    )
-  }
-  
+const TasksList = async (props: TasksListProps) => {
+  const tasksFiltered = await getTasksFiltered(props.filter)
+
   return (
     <div className="flex flex-col gap-4">
-      {props.tasks
-        .filter((task) => task.status === props.filter)
-        .map((task) => (
-          <TaskCard key={task.id} task={task} />
-        ))}
+      {tasksFiltered.map((task) => (
+        <TaskCard key={task.id} task={task} />
+      ))}
     </div>
   )
 }

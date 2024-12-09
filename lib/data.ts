@@ -3,25 +3,64 @@
 import prisma from '@/lib/prisma'
 import { Participant, Task } from '@prisma/client'
 
-const getTasks = async (): Promise<Task[]> => {
-  const tasks = await prisma.task.findMany({
-    orderBy: [
-      {
-        isCompleted: 'desc',
-      },
-      {
-        createdAt: 'asc',
-      },
-    ],
-  })
+type Filter = 'all' | 'open' | 'closed' | 'archived'
 
-  return tasks
+const getTasks = async (): Promise<Task[]> => {
+  try {
+    return await prisma.task.findMany({
+      orderBy: [
+        {
+          isCompleted: 'desc',
+        },
+        {
+          createdAt: 'asc',
+        },
+      ],
+    })
+  } catch {
+    return []
+  }
+}
+
+const getTasksFiltered = async (filter: Filter): Promise<Task[]> => {
+  try {
+    if (filter && filter !== 'all') {
+      return await prisma.task.findMany({
+        where: {
+          status: filter,
+        },
+        orderBy: [
+          {
+            isCompleted: 'desc',
+          },
+          {
+            createdAt: 'asc',
+          },
+        ],
+      })
+    }
+
+    return await prisma.task.findMany({
+      orderBy: [
+        {
+          isCompleted: 'desc',
+        },
+        {
+          createdAt: 'asc',
+        },
+      ],
+    })
+  } catch {
+    return []
+  }
 }
 
 const getParticipants = async (): Promise<Participant[]> => {
-  const participants = await prisma.participant.findMany()
-
-  return participants
+  try {
+    return await prisma.participant.findMany()
+  } catch {
+    return []
+  }
 }
 
 const getParticipantsOnTask = async (
@@ -40,4 +79,4 @@ const getParticipantsOnTask = async (
   }
 }
 
-export { getTasks, getParticipants, getParticipantsOnTask }
+export { getTasks, getTasksFiltered, getParticipants, getParticipantsOnTask }
