@@ -20,7 +20,7 @@ async function main() {
       project: 'Project Alpha',
       startTime: '09:00:00',
       endTime: '10:00:00',
-      status: 'Open',
+      status: 'open',
       isCompleted: false,
       participants: {
         create: [
@@ -38,7 +38,7 @@ async function main() {
       project: 'Project Beta',
       startTime: '10:00:00',
       endTime: '11:00:00',
-      status: 'Open',
+      status: 'open',
       isCompleted: false,
       participants: {
         create: [
@@ -55,7 +55,7 @@ async function main() {
       project: 'Project Gamma',
       startTime: '11:00:00',
       endTime: '12:00:00',
-      status: 'Archived',
+      status: 'archived',
       isCompleted: false,
       participants: {
         create: [
@@ -72,7 +72,7 @@ async function main() {
       project: 'Project Delta',
       startTime: '12:00:00',
       endTime: '13:00:00',
-      status: 'Closed',
+      status: 'closed',
       isCompleted: false,
       participants: {
         create: [
@@ -92,7 +92,7 @@ async function main() {
       project: 'Project Super Delta',
       startTime: '14:00:00',
       endTime: '17:00:00',
-      status: 'Archived',
+      status: 'archived',
       isCompleted: false,
       participants: {
         create: [

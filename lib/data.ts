@@ -1,8 +1,9 @@
 'use server'
 
 import prisma from '@/lib/prisma'
+import { Participant, Task } from '@prisma/client'
 
-const getTasks = async () => {
+const getTasks = async (): Promise<Task[]> => {
   const tasks = await prisma.task.findMany({
     orderBy: [
       {
@@ -17,17 +18,15 @@ const getTasks = async () => {
   return tasks
 }
 
-const getParticipants = async () => {
-  const participants = await prisma.participant.findMany({
-    select: {
-      email: true,
-    },
-  })
+const getParticipants = async (): Promise<Participant[]> => {
+  const participants = await prisma.participant.findMany()
 
   return participants
 }
 
-const getParticipantsOnTask = async (taskId: string) => {
+const getParticipantsOnTask = async (
+  taskId: string,
+): Promise<Participant[]> => {
   try {
     const participants = await prisma.participantOnTask.findMany({
       where: { taskId },
@@ -41,4 +40,4 @@ const getParticipantsOnTask = async (taskId: string) => {
   }
 }
 
-export { getParticipants, getTasks, getParticipantsOnTask }
+export { getTasks, getParticipants, getParticipantsOnTask }

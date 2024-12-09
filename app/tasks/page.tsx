@@ -4,8 +4,19 @@ import TasksList from './_components/TaskList'
 
 import { getTasks } from '@/lib/data'
 
-const PageTasks = async () => {
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
+
+type PageTasksProps = {
+  searchParams: SearchParams
+}
+
+type Filter = 'all' | 'open' | 'closed' | 'archived'
+
+const PageTasks = async (props: PageTasksProps) => {
   const tasks = await getTasks()
+  
+  const searchParams = await props.searchParams
+  const filter = searchParams.filter as Filter
 
   return (
     <div className="p-4 pt-12 md:pt-4">
@@ -17,8 +28,8 @@ const PageTasks = async () => {
           </div>
           <NewTask />
         </div>
-        <Categories tasks={tasks} />
-        <TasksList tasks={tasks} filter="all" />
+        <Categories tasks={tasks} filter={filter} />
+        <TasksList tasks={tasks} filter={filter ? filter : 'all'} />
       </div>
     </div>
   )
