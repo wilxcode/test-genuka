@@ -14,7 +14,7 @@ type Filter = 'all' | 'open' | 'closed' | 'archived'
 
 const PageTasks = async (props: PageTasksProps) => {
   const tasks = await getTasks()
-  
+
   const searchParams = await props.searchParams
   const filter = searchParams.filter as Filter
 
