@@ -62,36 +62,26 @@ const Categories = (props: CategoriesProps) => {
     <div>
       <ul className="list-none flex flex-wrap gap-1 gap-y-4 *:inline-flex *:gap-1 *:items-center *:text-muted-foreground">
         {listItems.map((li, index) => {
+          const isActive =
+            props.filter === li.filter ||
+            (props.filter === undefined && li.filter === 'all')
+
           return (
             <li key={index}>
               <Button
                 variant={'ghost'}
                 size={'sm'}
                 className={cn(
-                  props.filter === li.filter
-                    ? 'text-primary'
-                    : 'text-muted-foreground'
-                      ? props.filter === undefined && li.filter === 'all'
-                        ? 'text-primary'
-                        : 'text-muted-foreground'
-                      : 'text-muted-foreground',
+                  isActive ? 'text-primary' : 'text-muted-foreground',
                 )}
                 onClick={() => handleFilter(li.filter)}
               >
                 <span>{li.name}</span>
                 <Badge
-                  variant={
-                    props.filter === li.filter
-                      ? 'default'
-                      : 'outline'
-                        ? props.filter === undefined && li.filter === 'all'
-                          ? 'default'
-                          : 'outline'
-                        : 'outline'
-                  }
+                  variant={isActive ? 'default' : 'outline'}
                   className={cn(
                     'rounded-full',
-                    // isActive ? 'bg-primary' : 'bg-[#d9d9d9] text-white',
+                    isActive ? 'bg-primary' : 'bg-[#d9d9d9] text-white',
                   )}
                 >
                   {li.numberOfTasks ? li.numberOfTasks : 0}
