@@ -13,6 +13,7 @@ type TaskCheckboxProps = {
 const TaskCheckbox = (props: TaskCheckboxProps) => {
   const [checked, setChecked] = useState(props.isCompleted)
   // console.log(checked)
+  
   const [result, setResult] = useState<{
     success?: string
     error?: string
@@ -29,7 +30,7 @@ const TaskCheckbox = (props: TaskCheckboxProps) => {
         setChecked(!checked)
       }
     })
-    
+
     setResult(response)
   }
 

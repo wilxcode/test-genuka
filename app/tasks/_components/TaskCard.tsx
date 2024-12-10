@@ -9,7 +9,6 @@ import { Separator } from '@/components/ui/separator'
 import TaskCheckbox from './TaskCheckbox'
 import TaskParticipants from './TaskParticipants'
 
-import { Suspense } from 'react'
 import { Task } from '@prisma/client'
 import { cn, formatTime } from '@/lib/utils'
 
@@ -42,9 +41,7 @@ const TaskCard = (props: TaskCardProps) => {
           <span className="text-[#a6a6a6]">Today</span>{' '}
           {formatTime(props.task.startTime)} - {formatTime(props.task.endTime)}
         </p>
-        <Suspense fallback={<span className='inline-block h-8'>Loading...</span>}>
-          <TaskParticipants taskId={props.task.id} />
-        </Suspense>
+        <TaskParticipants taskId={props.task.id} />
       </CardContent>
     </Card>
   )

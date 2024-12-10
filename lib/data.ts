@@ -63,9 +63,7 @@ const getParticipants = async (): Promise<Participant[]> => {
   }
 }
 
-const getParticipantsOnTask = async (
-  taskId: string,
-): Promise<Participant[]> => {
+const getTaskParticipants = async (taskId: string): Promise<Participant[]> => {
   try {
     const participants = await prisma.participantOnTask.findMany({
       where: { taskId },
@@ -73,10 +71,9 @@ const getParticipantsOnTask = async (
     })
 
     return participants.map((p) => p.participant)
-  } catch (error) {
-    console.error('Error fetching participants:', error)
+  } catch {
     return []
   }
 }
 
-export { getTasks, getTasksFiltered, getParticipants, getParticipantsOnTask }
+export { getTasks, getTasksFiltered, getParticipants, getTaskParticipants }

@@ -1,14 +1,24 @@
 import Avatars from '@/components/ui/avatars'
-
-import { getParticipantsOnTask } from '@/lib/data'
+import { useTaskParticipants } from '@/hooks/useTaskParticipants'
 
 type TaskParticipantsProps = {
   taskId: string
 }
 
-const TaskParticipants = async (props: TaskParticipantsProps) => {
-  const participants = await getParticipantsOnTask(props.taskId)
-  // console.log(participants)
+const TaskParticipants = (props: TaskParticipantsProps) => {
+  const {
+    data: participants = [],
+    isLoading,
+    error,
+  } = useTaskParticipants(props.taskId)
+
+  if (isLoading) {
+    return <span className="text-sm">Loading...</span>
+  }
+
+  if (error) {
+    return <span className="text-sm text-destructive">Error</span>
+  }
 
   return <Avatars numPeople={participants.length} participants={participants} />
 }
