@@ -3,6 +3,7 @@ import Categories from './_components/Categories'
 import TasksList from './_components/TaskList'
 
 import { getTasks } from '@/lib/data'
+import { Suspense } from 'react'
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
@@ -29,7 +30,9 @@ const PageTasks = async (props: PageTasksProps) => {
           <NewTask />
         </div>
         <Categories tasks={tasks} filter={filter} />
-        <TasksList filter={filter ? filter : 'all'} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <TasksList filter={filter ? filter : 'all'} />
+        </Suspense>
       </div>
     </div>
   )

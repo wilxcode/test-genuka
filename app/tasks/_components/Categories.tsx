@@ -44,7 +44,7 @@ const Categories = (props: CategoriesProps) => {
 
   const searchParams = useSearchParams()
   const pathname = usePathname()
-  const { replace } = useRouter()
+  const router = useRouter()
   // console.log('searchParams : ' + searchParams)
 
   const handleFilter = (filter: string) => {
@@ -55,7 +55,7 @@ const Categories = (props: CategoriesProps) => {
       params.delete('filter')
     }
 
-    replace(`${pathname}?${params.toString()}`)
+    router.replace(`${pathname}?${params.toString()}`)
   }
 
   return (
